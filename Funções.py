@@ -41,4 +41,25 @@ def receber_informacao(info):
             print('Informe apenas números, sem "."')
     return informacao
 
-def calculo_dtm(p,i,u):
+def calculo_dtm(p = 0,i = 0,u = 0):
+    calculo = {}
+
+    if p == 0 and u != 0 and i != 0:
+        p = u * i
+
+    elif i == 0 and u != 0 and p != 0:
+        i = p / u
+                   
+    elif u == 0 and p != 0 and i != 0:
+        u = p / i
+    else:
+        return {'erro': 'Falta de informação (Forneça dois valores)'}
+        
+
+    dtm = i * 1.2 
+
+    calculo['Potencia'] = p
+    calculo['Tensão'] = u
+    calculo['Corrente'] = i
+    calculo['Dtm'] = dtm
+    return calculo
