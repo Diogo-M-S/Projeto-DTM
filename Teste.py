@@ -1,0 +1,3 @@
+import Funções
+
+Funções.linha()
