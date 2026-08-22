@@ -42,4 +42,3 @@ def receber_informacao(info):
     return informacao
 
 def calculo_dtm(p,i,u):
-    
