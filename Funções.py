@@ -26,20 +26,29 @@ def tipo_de_carga():
     return carga
 
 def curva_da_carga(carga):
-    if carga in ['Iluminação','Resistiva']:
+    carga = carga.lower()
+
+    if carga in ['iluminacao','iluminação','resistiva']:
         curvatura = 'Curva B'
-    elif carga == 'Indutiva':
+    elif carga == 'indutiva':
         curvatura = 'Curva C'
+    else:
+        curvatura = 'Carga desconhecida'
     return curvatura
 
-def receber_informacao(info):
+def receber_informacao(info,tipo = float):
     while True:
         try:
-            informacao = int(input(f'Insira a {info}: '))
+            dados = input(f'Insira a {info}: ')
+
+            if tipo is float:
+                dados = dados.replace(',' , '.')    
+            informacao = tipo(dados)
             break
-        except ValueError:
-            print('Informe apenas números, sem "."')
+        except Exception as erro:
+            print(f'Erro detectado {erro.__class__}')
     return informacao
+    
 
 def calculo_dtm(p = 0,i = 0,u = 0):
     calculo = {}
