@@ -2,15 +2,21 @@ def linha():
     print('-'*30)
 
 def tipo_de_carga():
+    '''Definir qual tipo de carga será ultilizado'''
+
     print('Qual o tipo de Carga? \n')
     print(''' 1) Resistiva \n 2) Indutiva \n 3) Iluminação \n''')
+    
+    #Resistiva para transferencia de energia em calor
+    #Indutiva para motores que tem um pico de energia
+
     while True:
         while True:
             try:
                 carga=int(input('Digite o número: '))
                 break
             except ValueError:
-                print('Digite o número correspondente a carga')
+                print('Digite o número correspondente a carga!')
     
         if carga == 1:
             carga = 'Resistiva'
@@ -26,6 +32,7 @@ def tipo_de_carga():
     return carga
 
 def curva_da_carga(carga):
+    ''' Curva do disjuntor'''
     carga = carga.lower()
 
     if carga in ['iluminacao','iluminação','resistiva']:
@@ -37,20 +44,25 @@ def curva_da_carga(carga):
     return curvatura
 
 def receber_informacao(info,tipo = float):
+    '''Função padrão para coleta de dados'''
+    #Info = Informação necessária
     while True:
         try:
-            dados = input(f'Insira a {info}: ')
-
+            dados = input(f'Insira {info}: ')
+            #Verificação para evitar erro
             if tipo is float:
                 dados = dados.replace(',' , '.')    
             informacao = tipo(dados)
             break
+        #Para testar se o código está se comportando da maneira esperada
         except Exception as erro:
             print(f'Erro detectado {erro.__class__}')
     return informacao
     
 
 def calculo_dtm(p = 0,i = 0,u = 0):
+    '''Cálculo para saber Pôtencia, Corrente, Tensão
+      e posterior calculo do disjuntor'''
     calculo = {}
 
     if p == 0 and u != 0 and i != 0:
